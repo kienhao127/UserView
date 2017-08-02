@@ -16,7 +16,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ViewTimeActivity"></activity>
+        <activity
+            android:name=".VoteActivity"
+            android:label="@string/title_activity_vote"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ViewTime"
+            android:label="@string/title_activity_view_time"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ViewTimeActivity"
+            android:label="@string/title_activity_view_time"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

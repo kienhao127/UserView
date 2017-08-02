@@ -29,7 +29,6 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
-
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
         int i=0;
@@ -38,14 +37,20 @@ public class MainActivity extends Activity {
             arrayList.add(dataprovider);
             i++;
         }
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         adapter = new RecyclerAdapter(arrayList);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
+
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(Dataprovider item) {
+                if (item.getItemName()=="Bình chọn") {
+                    Intent myIntent=new Intent(getApplicationContext(), VoteActivity.class);
+                    startActivity(myIntent);
+                }
                 if (item.getItemName()=="Giờ xem") {
                     Intent myIntent=new Intent(getApplicationContext(), ViewTimeActivity.class);
                     startActivity(myIntent);

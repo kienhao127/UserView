@@ -7,3 +7,5 @@ package com.example.cpu11341_local.userviewtest;
 public interface OnItemClickListener {
     void onItemClick(Dataprovider item);
 }
+
+

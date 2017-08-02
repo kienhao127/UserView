@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/textViewNumber"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:textSize="20dp"
+        android:layout_marginLeft="4dp"
+        android:textColor="#FF0000"
+        android:gravity="center"
+        android:text="1"
+        />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imageViewAvatar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/android"
+        android:layout_toRightOf="@+id/textViewNumber"
+        />
+
+    <TextView
+        android:id="@+id/textViewName"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:textSize="20dp"
+        android:layout_toRightOf="@+id/imageViewAvatar"
+        android:layout_marginLeft="4dp"
+        android:textColor="#000000"
+        android:gravity="left|center"
+        />
+    <TextView
+        android:id="@+id/textViewScore"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:textSize="20dp"
+        android:layout_marginLeft="4dp"
+        android:textColor="#000000"
+        android:gravity="right|center"
+        android:text="4.8"
+        android:layout_toLeftOf="@+id/imageViewStar"
+        />
+    <ImageView
+        android:id="@+id/imageViewStar"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@mipmap/ic_star"
+
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#9D9D9D"
+        android:layout_below="@+id/textViewString"
+        android:id="@+id/view" />
+</RelativeLayout>

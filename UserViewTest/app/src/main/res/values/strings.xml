@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">UserViewTest</string>
+    <string name="title_activity_vote">Bảng xếp hạng bình chọn</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_view_time">Thống kê giờ xem</string>
+    <string name="action_settings">Settings</string>
 </resources>

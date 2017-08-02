@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.cpu11341_local.userviewtest.ViewTimeActivity">
+    tools:context="com.example.cpu11341_local.userviewtest.VoteActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -21,30 +21,9 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay">
+
         </android.support.v7.widget.Toolbar>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imageViewAvatar"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/android"
-                />
-            <TextView
-                android:id="@+id/textViewFB"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="fb.1231231231"
-                android:textColor="#000000"/>
-            <TextView
-                android:id="@+id/textViewID"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ID: 90000123"/>
-        </LinearLayout>
+
         <android.support.design.widget.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
