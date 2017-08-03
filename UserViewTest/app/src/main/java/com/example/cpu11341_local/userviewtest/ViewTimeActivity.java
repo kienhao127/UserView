@@ -19,6 +19,8 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class ViewTimeActivity extends AppCompatActivity {
 
     /**
@@ -49,6 +51,7 @@ public class ViewTimeActivity extends AppCompatActivity {
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager.setOffscreenPageLimit(3);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
@@ -78,13 +81,13 @@ public class ViewTimeActivity extends AppCompatActivity {
     /**
      * A placeholder fragment containing a simple view.
      */
+    public static ArrayList<ViewTimeData> arrayListViewTimeData = new ArrayList<ViewTimeData>();
     public static class PlaceholderFragment extends Fragment {
         /**
          * The fragment argument representing the section number for this
          * fragment.
          */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
+        private static final String ARG_SECTION_STRING = "section_string";
         public PlaceholderFragment() {
         }
 
@@ -92,10 +95,10 @@ public class ViewTimeActivity extends AppCompatActivity {
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
+        public static PlaceholderFragment newInstance(String sectionNumber) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            args.putString(ARG_SECTION_STRING, sectionNumber);
             fragment.setArguments(args);
             return fragment;
         }
@@ -104,9 +107,43 @@ public class ViewTimeActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_view_time, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+            String str = getArguments().getString(ARG_SECTION_STRING);
+            SetViewTimeInfo();
+
+            ArrayList<String> arrayListColName = new ArrayList<>();
+            ArrayList<String> arrayListColNameColor = new ArrayList<>();
+            ArrayList<Integer> arrayListViewTime = new ArrayList<>();
+
+            arrayListColName.add("Show");
+            arrayListColName.add("PC");
+            arrayListColName.add("Moblie");
+            arrayListColName.add("Khác");
+
+            arrayListColNameColor.add("#3fc3c5");
+            arrayListColNameColor.add("#fe5e5e");
+            arrayListColNameColor.add("#ffbd4a");
+            arrayListColNameColor.add("#4069ff");
+
+            for (ViewTimeData v : arrayListViewTimeData){
+                if (v.getViewDate() == str){
+                    arrayListViewTime.clear();
+                    arrayListViewTime.add(v.getShowTime());
+                    arrayListViewTime.add(v.getPCTime());
+                    arrayListViewTime.add(v.getMobileTime());
+                    arrayListViewTime.add(v.getOtherTime());
+
+                }
+            }
+
+            CustomBarChart graphicView = (CustomBarChart) rootView.findViewById(R.id.custom_bar_chart);
+            graphicView.setColValue(arrayListColName, arrayListColNameColor, arrayListViewTime);
             return rootView;
+        }
+
+        void SetViewTimeInfo(){
+            arrayListViewTimeData.add(new ViewTimeData("1", "5/2017", 3,2,0,0));
+            arrayListViewTimeData.add(new ViewTimeData("1", "6/2017", 120,30,26,4));
+            arrayListViewTimeData.add(new ViewTimeData("1", "7/2017", 31,22,40,10));
         }
     }
 
@@ -122,9 +159,15 @@ public class ViewTimeActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            switch (position){
+                case 0:{
+                    return ViewTimeActivity.PlaceholderFragment.newInstance("5/2017");
+                }
+                case 1:{
+                    return ViewTimeActivity.PlaceholderFragment.newInstance("6/2017");
+                }
+            }
+            return ViewTimeActivity.PlaceholderFragment.newInstance("7/2017");
         }
 
         @Override
@@ -137,11 +180,11 @@ public class ViewTimeActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SECTION 1";
+                    return "5/2017";
                 case 1:
-                    return "SECTION 2";
+                    return "6/2017";
                 case 2:
-                    return "SECTION 3";
+                    return "7/2017";
             }
             return null;
         }

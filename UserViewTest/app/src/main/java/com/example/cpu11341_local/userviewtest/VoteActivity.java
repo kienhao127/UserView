@@ -98,7 +98,7 @@ public class VoteActivity extends AppCompatActivity {
          * The fragment argument representing the section number for this
          * fragment.
          */
-        private static final String ARG_SECTION_NUMBER = "section_number";
+        private static final String ARG_SECTION_STRING = "section_string";
 
         RecyclerView recyclerView;
         RecyclerView.Adapter adapter;
@@ -116,7 +116,7 @@ public class VoteActivity extends AppCompatActivity {
         public static PlaceholderFragment newInstance(String sectionNumber) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
-            args.putString(ARG_SECTION_NUMBER, sectionNumber);
+            args.putString(ARG_SECTION_STRING, sectionNumber);
             fragment.setArguments(args);
             return fragment;
         }
@@ -125,13 +125,11 @@ public class VoteActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_vote, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText("");
 
             setUserInfo();
             setVoteInfo();
 
-            String str = getArguments().getString(ARG_SECTION_NUMBER);
+            String str = getArguments().getString(ARG_SECTION_STRING);
             ArrayList<VoteData> newArrayListVote = new ArrayList<VoteData>();
             for (VoteData v : arrayListVote){
                 if (v.getVoteDate() == str){
